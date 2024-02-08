@@ -1,5 +1,7 @@
 const express = require('express');
 const { testConnection } = require('./db/conn');
+const { authenticateJWT } = require('./middlewares/authMiddleware');
+
 const app = express();
 const PORT = 8080;
 
@@ -8,6 +10,10 @@ app.use(express.json());
 
 app.get('/health', (req, res) => {
     res.send('OK');
+});
+
+app.get('/protected', authenticateJWT, (req, res) => {
+    res.send('This is a protected route');
 });
 
 // import routes
