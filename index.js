@@ -18,9 +18,15 @@ app.get('/protected', authenticateJWT, (req, res) => {
 
 // import routes
 const userRoutes = require('./routes/userRoutes');
+const topicRoutes = require('./routes/topicRoutes');
+const postRoutes = require('./routes/postRoutes');
+const replyRoutes = require('./routes/replyRoutes');
 
 // use routes
 app.use('/users', userRoutes.modules);
+app.use('/topics', topicRoutes.modules);
+app.use('/posts', postRoutes.modules);
+app.use('/replies', replyRoutes.modules);
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
