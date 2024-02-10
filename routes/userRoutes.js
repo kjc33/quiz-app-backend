@@ -3,7 +3,9 @@ const router = express.Router();
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
 const { User } = require('../models/userModel');
+const { authenticateJWT } = require('../middlewares/authMiddleware');
 
 
 // POST - /register - register new user
@@ -63,6 +65,11 @@ router.post('/login', async (req, res) => {
         console.error(err);
         res.status(500).send('An error occurred while logging in.');
     }
+});
+
+// GET - /verifyToken - authenticate JSON Web Token Validity
+router.get('/verifyToken', authenticateJWT, async (req, res) => {
+    res.status(200).send({ message: 'Token is valid.' });
 });
 
 exports.modules = router;

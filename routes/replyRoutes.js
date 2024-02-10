@@ -3,7 +3,6 @@ const router = express.Router();
 const replyController = require('../controllers/replyControllers');
 const {authenticateJWT} = require('../middlewares/authMiddleware');
 
-
 // get all replies
 router.get('/', replyController.getAllReplies);
 
