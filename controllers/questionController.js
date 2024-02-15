@@ -34,7 +34,8 @@ exports.createQuestion = async (req, res) => {
       choice_2: req.body.choice_2,
       choice_3: req.body.choice_3,
       choice_4: req.body.choice_4,
-      answer: req.body.answer
+      answer: req.body.answer,
+      user_id: req.body.user_id,
     });
     res.status(201).json(question);
   } catch (error) {
@@ -53,7 +54,7 @@ exports.updateQuestionById = async (req, res) => {
         choice_2: req.body.choice_2,
         choice_3: req.body.choice_3,
         choice_4: req.body.choice_4,
-        answer: req.body.answer
+        answer: req.body.answer,
       });
       res.status(200).json(question);
     } else {
