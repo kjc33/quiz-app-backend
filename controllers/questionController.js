@@ -6,6 +6,7 @@ exports.getAllQuestions = async (req, res) => {
     const questions = await Question.findAll();
     res.status(200).json(questions);
   } catch (error) {
+    console.error("Error fetching questions:", error); // Log the error
     res.status(500).json({ message: "An error occurred while getting questions." });
   }
 };
@@ -33,8 +34,7 @@ exports.createQuestion = async (req, res) => {
       choice_2: req.body.choice_2,
       choice_3: req.body.choice_3,
       choice_4: req.body.choice_4,
-      answer: req.body.answer,
-      difficulty: req.body.difficulty,
+      answer: req.body.answer
     });
     res.status(201).json(question);
   } catch (error) {
@@ -53,8 +53,7 @@ exports.updateQuestionById = async (req, res) => {
         choice_2: req.body.choice_2,
         choice_3: req.body.choice_3,
         choice_4: req.body.choice_4,
-        answer: req.body.answer,
-        difficulty: req.body.difficulty,
+        answer: req.body.answer
       });
       res.status(200).json(question);
     } else {
