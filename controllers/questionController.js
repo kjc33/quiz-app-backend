@@ -1,4 +1,4 @@
-const { Question } = require("../models/quizModel");
+const { Question } = require("../models/questionModel");
 
 // GET - /api/questions - get all questions
 exports.getAllQuestions = async (req, res) => {

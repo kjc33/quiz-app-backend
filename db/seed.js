@@ -1,5 +1,5 @@
-const { sequelize } = require("../db/conn"); // Adjust the path as necessary
-const { Question } = require("../models/quizModel");
+const { sequelize } = require("../db/conn");
+const { Question } = require("../models/questionModel");
 const { User } = require("../models/userModel");
 
 // Seed the database
@@ -23,7 +23,6 @@ const seedDatabase = async () => {
         answer3: "Berlin",
         answer4: "Madrid",
         answer: "A",
-        difficulty: "Easy",
         user_id: user.id, // Associate questions with the created user
       },
       {
@@ -33,7 +32,6 @@ const seedDatabase = async () => {
         answer3: "Berlin",
         answer4: "Madrid",
         answer: "D",
-        difficulty: "Easy",
         user_id: user.id,
       },
       {
@@ -43,7 +41,6 @@ const seedDatabase = async () => {
         answer3: "Berlin",
         answer4: "Madrid",
         answer: "C",
-        difficulty: "Easy",
         user_id: user.id,
       },
       {
@@ -53,7 +50,6 @@ const seedDatabase = async () => {
         answer3: "Berlin",
         answer4: "Madrid",
         answer: "B",
-        difficulty: "Easy",
         user_id: user.id,
       },
     ]);
