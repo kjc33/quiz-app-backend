@@ -10,7 +10,7 @@ const authenticateJWT = (req, res, next) => {
       if (err) {
         return res.status(401).json({ message: "Invalid token" });
       } else {
-        req.user = {
+        req.admin = {
           id: decoded.id,
           first_name: decoded.first_name,
           last_name: decoded.last_name,

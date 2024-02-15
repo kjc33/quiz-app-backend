@@ -1,6 +1,6 @@
 const { sequelize } = require("../db/conn");
-const { Question } = require("../models/questionModel");
-const { User } = require("../models/userModel");
+const { Question } = require("../models/QuestionModel");
+const { User } = require("../models/UserModel");
 
 const seedDatabase = async () => {
   try {
