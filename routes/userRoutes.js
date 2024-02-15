@@ -20,4 +20,4 @@ router.delete('/:id', userController.deleteUser);
 // PUT - /api/users/:id/points/:number  - add points to a user
 router.put('/:id/points/:number', userController.addPoints);
 
-exports.modules = router;
+module.exports = router;

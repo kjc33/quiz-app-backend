@@ -17,4 +17,4 @@ router.put("/:id", questionController.updateQuestionById);
 // DELETE - /api/questions/:id - delete a question
 router.delete("/:id", questionController.deleteQuestionById);
 
-exports.modules = router;
+module.exports = router;

@@ -29,10 +29,10 @@ exports.createQuestion = async (req, res) => {
   try {
     const question = await Question.create({
       question_name: req.body.question_name,
-      answer1: req.body.answer1,
-      answer2: req.body.answer2,
-      answer3: req.body.answer3,
-      answer4: req.body.answer4,
+      choice_1: req.body.choice_1,
+      choice_2: req.body.choice_2,
+      choice_3: req.body.choice_3,
+      choice_4: req.body.choice_4,
       answer: req.body.answer,
       difficulty: req.body.difficulty,
     });
@@ -49,10 +49,10 @@ exports.updateQuestionById = async (req, res) => {
     if (question) {
       question.update({
         question_name: req.body.question_name,
-        answer1: req.body.answer1,
-        answer2: req.body.answer2,
-        answer3: req.body.answer3,
-        answer4: req.body.answer4,
+        choice_1: req.body.choice_1,
+        choice_2: req.body.choice_2,
+        choice_3: req.body.choice_3,
+        choice_4: req.body.choice_4,
         answer: req.body.answer,
         difficulty: req.body.difficulty,
       });

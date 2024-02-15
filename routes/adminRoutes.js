@@ -71,4 +71,4 @@ router.get("/verifyToken", authenticateJWT, async (req, res) => {
   res.status(200).send({ message: "Token is valid." });
 });
 
-exports.modules = router;
+module.exports = router;
