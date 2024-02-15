@@ -1,54 +1,44 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { User } = require("../models/UserModel");
-const { authenticateJWT } = require("../middlewares/AuthMiddleware");
+const { Admin } = require("../models/AdminModel");
 
-const registerUser = async (req, res) => {
+const registerAdmin = async (req, res) => {
   try {
-    // define salt rounds
     const saltRounds = 10;
-
-    // hash the password
     const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
 
-    // create the user
-    const user = await User.create({
+    const admin = await Admin.create({
       email: req.body.email,
       password: hashedPassword,
       first_name: req.body.first_name,
       last_name: req.body.last_name,
     });
 
-    // send the user back
-    res.status(201).json(user);
+    res.status(201).json(admin);
   } catch (err) {
     console.error(err);
-    res.status(500).send("An error occurred while registering the user.");
+    res.status(500).send("An error occurred while registering the admin.");
   }
 };
 
-const loginUser = async (req, res) => {
+const loginAdmin = async (req, res) => {
   try {
-    // find the user
-    const user = await User.findOne({
+    const admin = await Admin.findOne({
       where: {
         email: req.body.email,
       },
     });
 
-    // check if the user exists
-    if (!user) {
-      return res.status(400).send("User not found.");
+    if (!admin) {
+      return res.status(400).send("Admin not found.");
     }
 
-    // check if the password is correct
-    const validPassword = await bcrypt.compare(req.body.password, user.password);
+    const validPassword = await bcrypt.compare(req.body.password, admin.password);
     if (!validPassword) {
       return res.status(400).send("Invalid password.");
     }
 
-    // create and assign a token
-    const token = jwt.sign({ id: user.id, first_name: user.first_name, last_name: user.last_name }, process.env.TOKEN_SECRET);
+    const token = jwt.sign({ id: admin.id, first_name: admin.first_name, last_name: admin.last_name }, process.env.TOKEN_SECRET);
     res.status(200).send({ token });
   } catch (err) {
     console.error(err);
@@ -61,7 +51,7 @@ const verifyToken = async (req, res) => {
 };
 
 module.exports = {
-  registerUser,
-  loginUser,
+  registerAdmin,
+  loginAdmin,
   verifyToken,
 };

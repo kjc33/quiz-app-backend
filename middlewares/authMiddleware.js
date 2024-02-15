@@ -12,8 +12,8 @@ const authenticateJWT = (req, res, next) => {
       } else {
         req.user = {
           id: decoded.id,
-          firstName: decoded.first_name,
-          lastName: decoded.last_name,
+          first_name: decoded.first_name,
+          last_name: decoded.last_name,
         };
         next();
       }
