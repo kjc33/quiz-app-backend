@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { Admin } = require("../models/AdminModel");
+const Admin = require("../models/AdminModel");
 
 const registerAdmin = async (req, res) => {
   try {
@@ -16,7 +16,7 @@ const registerAdmin = async (req, res) => {
 
     res.status(201).json(admin);
   } catch (err) {
-    console.error(err);
+    console.error('Error registering admin:', err);
     res.status(500).send("An error occurred while registering the admin.");
   }
 };

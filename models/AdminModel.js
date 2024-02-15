@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../db/conn");
 
 const Admin = sequelize.define(
@@ -29,6 +29,7 @@ const Admin = sequelize.define(
   },
   {
     tableName: "admins",
+    timestamps: false,
   }
 );
 

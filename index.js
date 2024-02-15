@@ -6,7 +6,6 @@ const UserRoutes = require("./routes/UserRoutes");
 const QuestionRoutes = require("./routes/QuestionRoutes");
 const AdminRoutes = require("./routes/AdminRoutes");
 
-// Check if AuthMiddleware is imported correctly
 let authenticateJWT;
 try {
   authenticateJWT = require("./middlewares/AuthMiddleware").authenticateJWT;
@@ -25,7 +24,6 @@ app.get("/health", (req, res) => {
   res.send("OK");
 });
 
-// Check if authenticateJWT is properly imported before using it
 if (authenticateJWT) {
   app.get("/protected", authenticateJWT, (req, res) => {
     res.send("This is a protected route");
@@ -37,7 +35,7 @@ if (authenticateJWT) {
 // Use routes
 app.use("/api/users", UserRoutes);
 app.use("/api/questions", QuestionRoutes);
-app.use("/admin", AdminRoutes);
+app.use("/", AdminRoutes);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
