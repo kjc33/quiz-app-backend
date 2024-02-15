@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const { TABLE_NAMES, COLUMN_NAMES } = require("./constants");
+const { TABLE_NAMES, COLUMN_NAMES } = require("./Constants");
 const { sequelize } = require("../db/conn");
 
 const User = sequelize.define(

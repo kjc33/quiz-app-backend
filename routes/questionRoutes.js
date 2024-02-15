@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const questionController = require("../controllers/questionController");
+const questionController = require("../controllers/QuestionController");
 
 // GET - /api/questions - get all questions
 router.get("/", questionController.getAllQuestions);

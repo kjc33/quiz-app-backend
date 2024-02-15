@@ -1,10 +1,18 @@
 const express = require("express");
 const { testConnection } = require("./db/conn");
-const { authenticateJWT } = require("./middlewares/authMiddleware");
 const cors = require("cors");
-const { sequelize } = require("./db/conn"); // Import Sequelize instance
-const userRoutes = require("./routes/userRoutes");
-const questionRoutes = require("./routes/questionRoutes");
+const { sequelize } = require("./db/conn");
+const UserRoutes = require("./routes/UserRoutes");
+const QuestionRoutes = require("./routes/QuestionRoutes");
+const AdminRoutes = require("./routes/AdminRoutes");
+
+// Check if AuthMiddleware is imported correctly
+let authenticateJWT;
+try {
+  authenticateJWT = require("./middlewares/AuthMiddleware").authenticateJWT;
+} catch (error) {
+  console.error("Error importing AuthMiddleware:", error);
+}
 
 const app = express();
 const PORT = 8080;
@@ -17,13 +25,19 @@ app.get("/health", (req, res) => {
   res.send("OK");
 });
 
-app.get("/protected", authenticateJWT, (req, res) => {
-  res.send("This is a protected route");
-});
+// Check if authenticateJWT is properly imported before using it
+if (authenticateJWT) {
+  app.get("/protected", authenticateJWT, (req, res) => {
+    res.send("This is a protected route");
+  });
+} else {
+  console.error("authenticateJWT middleware not available.");
+}
 
 // Use routes
-app.use("/api/users", userRoutes);
-app.use("/api/questions", questionRoutes);
+app.use("/api/users", UserRoutes);
+app.use("/api/questions", QuestionRoutes);
+app.use("/admin", AdminRoutes);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
