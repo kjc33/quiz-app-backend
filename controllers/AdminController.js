@@ -15,8 +15,8 @@ const registerUser = async (req, res) => {
     const user = await User.create({
       email: req.body.email,
       password: hashedPassword,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
     });
 
     // send the user back
@@ -48,7 +48,7 @@ const loginUser = async (req, res) => {
     }
 
     // create and assign a token
-    const token = jwt.sign({ id: user.id, firstName: user.firstName, lastName: user.lastName }, process.env.TOKEN_SECRET);
+    const token = jwt.sign({ id: user.id, first_name: user.first_name, last_name: user.last_name }, process.env.TOKEN_SECRET);
     res.status(200).send({ token });
   } catch (err) {
     console.error(err);

@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const AuthController = require("../controllers/AuthController");
+const AdminController = require("../controllers/AdminController");
 const { authenticateJWT } = require("../middlewares/AuthMiddleware");
 
-router.post("/admin/register", AuthController.registerUser);
-router.post("/admin/login", AuthController.loginUser);
-router.get("/admin/verifyToken", authenticateJWT, AuthController.verifyToken);
+router.post("/admin/register", AdminController.registerUser);
+router.post("/admin/login", AdminController.loginUser);
+router.get("/admin/verifyToken", authenticateJWT, AdminController.verifyToken);
 
 module.exports = router;
