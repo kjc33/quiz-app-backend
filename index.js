@@ -2,7 +2,7 @@ const express = require("express");
 const { testConnection } = require("./db/conn");
 const cors = require("cors");
 const { sequelize } = require("./db/conn");
-const UserRoutes = require("./routes/UserRoutes");
+const UserRoutes = require(__dirname + "/routes/UserRoutes");
 const QuestionRoutes = require("./routes/QuestionRoutes");
 const AdminRoutes = require("./routes/AdminRoutes");
 
