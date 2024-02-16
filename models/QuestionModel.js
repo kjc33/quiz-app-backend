@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../db/conn');
 
-const { User } = require('./User_Model')
+const { User } = require('./UserModel')
 
 const questionAnswerEnum = ['A', 'B', 'C', 'D'];
 
