@@ -8,16 +8,19 @@ const authenticateJWT = (req, res, next) => {
 
     jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
       if (err) {
-        return res.status(401).json({ message: "Invalid token" });
+        if (err.name === 'TokenExpiredError') {
+          return res.status(401).json({ message: "Token expired" });
+        } else {
+          return res.status(401).json({ message: "Invalid token" });
+        }
       } else {
         req.admin = {
           id: decoded.id,
           email: decoded.email,
-          password: decoded.password,
         };
         next();
       }
-    });
+    });    
   } else {
     return res.status(401).json({ message: "Token not found" });
   }
